@@ -5,6 +5,7 @@ import random
 import mimesis
 import json
 import boto3
+import sys
 
 
 firehose = boto3.client('firehose',region_name='us-east-1')
@@ -17,7 +18,8 @@ with open('../config.json') as data:
 language = config["language"]
 
 # apache logs config
-n_logs = config["apache_logs"]["total"]
+# n_logs = config["apache_logs"]["total"]
+n_logs = int(sys.argv[1])
 log_start_date = config["apache_logs"]["log_start_date"]
 log_end_date = config["apache_logs"]["log_end_date"]
 
