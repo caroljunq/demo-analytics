@@ -1,0 +1,83 @@
+{
+  "n_cores": 2,
+  "output_path_files": "../results/",
+  "language": "en",
+  "data_processing":{
+    "amount_in_cpu": 1000,
+    "auto_batch_based_in_cpu":"True"
+  },
+  "apache_logs":{
+    "total": 1000,
+    "log_start_date": "2016-1-1 00:00:00",
+    "log_end_date": "2018-12-31 23:59:59"
+  },
+  "customers": {
+    "total": 3000,
+    "outfile": "customers.csv",
+    "min_age": 18,
+    "max_age": 65,
+    "joined_start_date": "2016-1-1 00:00:00",
+    "joined_end_date": "2018-12-31 23:59:59"
+  },
+  "campaigns": {
+    "outfile": "campaigns.csv"
+  },
+  "payments": {
+    "outfile": "payments.csv"
+  },
+  "products": {
+    "total": 4000,
+    "outfile": "products.csv"
+  },
+  "shippers": {
+    "total": 1000,
+    "outfile": "shippers.csv"
+  },
+  "categories": {
+    "outfile": "prod_categories.csv"
+  },
+  "suppliers": {
+    "total": 1000,
+    "outfile": "suppliers.csv"
+  },
+  "clickstream_no_succeed":{
+    "total": 500000,
+    "outfile": "clickstream-no-succeed.csv",
+    "click_start_date": "2017-1-1 00:00:00",
+    "click_end_date": "2018-12-31 23:59:59"
+  },
+  "clickstream_succeed":{
+    "outfile": "clickstream-succeed.csv"
+  },
+  "joined_clickstream_file": "clickstream.csv",
+  "orders":{
+    "total": 300000,
+    "order_start_date":"2017-1-1 00:00:00",
+    "order_end_date":"2018-12-31 23:59:59",
+    "outfile": "orders.csv",
+    "percentage_no_campaign": 0.6
+  },
+  "orders_items":{
+    "outfile": "orders_items.csv",
+    "number_max_prod_per_order": 3
+  },
+  "media":{
+    "_comments": "All percentages must sum 1",
+    "sources": ["Twitter", "E-mail", "Facebook", "Website-ads","Youtube"],
+    "percentages": [0.15, 0.10, 0.30, 0.35, 0.10]
+  },
+  "genders":{
+    "en": ["Female","Male","Fluid","Others"],
+    "pt-br": ["Feminino","Masculino","Fluido","Outros"],
+    "_comments": "All percentages must sum 1",
+    "percentages": [0.35,0.35,0.20,0.10]
+  },
+  "en": {
+    "payments": ["Cash","Aura Cabal","American Express","Diners Club","Discover","Visa","Hpercard","Elo","Mastercard"],
+    "campaigns": ["Spring1","Mother's Day1","Father's Day","Black Friday","Christmas1","Spring2","Autumn","Mother's Day2","Christmas2"]
+  },
+  "pt-br":{
+    "payments": ["Cash","Aura Cabal","American Express","Diners Club","Discover","Visa","Hpercard","Elo","Mastercard"],
+    "campaigns": ["Primavera1","Dia das Mães1","Dia dos Pais","Black Friday","Natal1","Primavera2","Outono","Dia das Mães2","Natal2"]
+  }
+}

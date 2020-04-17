@@ -1,0 +1,4 @@
+mimesis
+numpy
+pandas
+boto3
