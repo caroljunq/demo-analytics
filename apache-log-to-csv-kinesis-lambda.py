@@ -14,7 +14,9 @@ def lambda_handler(event, context):
     s3 = boto3.client('s3')
     logs = ''
     filename = datetime.now().strftime('%Y-%m-%d_%H-%M-%S') + ".csv"
+    count = 0
     for record in event['records']:
+        count += 1
         payload_log = base64.b64decode(record['data'])
         elems = str(payload_log).split(' ')
         order_date_date = elems[3][1:]
@@ -29,8 +31,9 @@ def lambda_handler(event, context):
         logs += f'{customer_id},{order_date_date} {order_date_hour},{campaign_id},{media_source},{prod_id}\n'
         
     s3.put_object(Body=logs, Bucket=BUCKET, Key=filename)
-    print('Processed ' + str(len(logs)) + 'logs')
+    print(str(count) + ' logs were processed!')
+    
     return {
         'statusCode': 200,
-        'body': json.dumps('Processed ' + str(len(logs)) + 'logs')
+        'body': json.dumps('Logs were processed!')
     }
