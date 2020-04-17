@@ -159,23 +159,23 @@ logs_headers = [
 
 log_size = len(logs_headers)
 print("Initializing...")
+print(n_logs)
+# for i in range(n_logs):	
+#     customer_id = random.randint(1,n_customers)
+#     order_date = common_functions.random_date(log_start_date,log_end_date,random.random())
+#     campaign_id = random.randint(1,n_campaigns)
+#     media_source = np.random.choice(media_sources, p=media_prob)  
+#     product_id = random.randint(1,n_products)
+#     ip = internet.ip_v4()
+#     seed2 = random.randint(0,log_size - 1)
+#     log = str(ip)+" - - ["+order_date+" +0000] \"GET / HTTP/1.1\" 200 38 \"id_cliente="+str(customer_id)+"&id_campaign="+str(campaign_id)+"&source="+str(media_source)+"&prod_id="+str(product_id)+" "+logs_headers[seed2] + "\n"
+#     print(log)
 
-for i in range(n_logs):	
-    customer_id = random.randint(1,n_customers)
-    order_date = common_functions.random_date(log_start_date,log_end_date,random.random())
-    campaign_id = random.randint(1,n_campaigns)
-    media_source = np.random.choice(media_sources, p=media_prob)  
-    product_id = random.randint(1,n_products)
-    ip = internet.ip_v4()
-    seed2 = random.randint(0,log_size - 1)
-    log = str(ip)+" - - ["+order_date+" +0000] \"GET / HTTP/1.1\" 200 38 \"id_cliente="+str(customer_id)+"&id_campaign="+str(campaign_id)+"&source="+str(media_source)+"&prod_id="+str(product_id)+" "+logs_headers[seed2] + "\n"
-    print(log)
+#     response = firehose.put_record(
+#         DeliveryStreamName='retail-delivery-stream',
+#         Record={
+#             'Data': log
+#          }
+#     )
 
-    response = firehose.put_record(
-        DeliveryStreamName='retail-delivery-stream',
-        Record={
-            'Data': log
-         }
-    )
-
-print("Finishing...")
+# print("Finishing...")
