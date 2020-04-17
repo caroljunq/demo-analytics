@@ -7,7 +7,7 @@ import json
 import boto3
 
 
-# firehose = boto3.client('firehose',region_name='us-east-1')
+firehose = boto3.client('firehose',region_name='us-east-1')
 
 # reading config
 with open('../config.json') as data:
@@ -158,9 +158,6 @@ logs_headers = [
 log_size = len(logs_headers)
 print("Initializing...")
 
-
-# firehose = boto3.client('firehose',region_name="us-east-1")
-
 for i in range(n_logs):	
     customer_id = random.randint(1,n_customers)
     order_date = common_functions.random_date(log_start_date,log_end_date,random.random())
@@ -172,11 +169,11 @@ for i in range(n_logs):
     log = str(ip)+" - - ["+order_date+" +0000] \"GET / HTTP/1.1\" 200 38 \"id_cliente="+str(customer_id)+"&id_campaign="+str(campaign_id)+"&source="+str(media_source)+"&prod_id="+str(product_id)+" "+logs_headers[seed2] + "\n"
     print(log)
 
-    # response = firehose.put_record(
-    #     DeliveryStreamName='retail-delivery-stream',
-    #     Record={
-    #         'Data': log
-    #      }
-    # )
+    response = firehose.put_record(
+        DeliveryStreamName='retail-delivery-stream',
+        Record={
+            'Data': log
+         }
+    )
 
 print("Finishing...")
