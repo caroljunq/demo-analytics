@@ -58,7 +58,7 @@ for i in range(n_inserts):
     gender = np.random.choice(genders, p=gender_prob)
     city = address.city().replace(',','')
     state = address.state().replace(',','')
-    records_to_insert.append((customer_id,age,country_id,gender,city,state))
+    records_to_insert.append((str(customer_id),str(age),str(country_id),str(gender),str(city),str(state)))
 
 cursor = connection.cursor()
 cursor.executemany(mysql_insert_query, records_to_insert)
