@@ -5,6 +5,7 @@ import mimesis
 import json
 import common_functions
 import pymysql as mysql
+import numpy as np
 
 # reading config
 with open('../config.json') as data:
@@ -57,7 +58,7 @@ for i in range(n_inserts):
     gender = np.random.choice(genders, p=gender_prob)
     city = address.city().replace(',','')
     state = address.state().replace(',','')
-    records_to_insert.add((customer_id,age,country_id,gender,city,state))
+    records_to_insert.append((customer_id,age,country_id,gender,city,state))
 
 cursor = connection.cursor()
 cursor.executemany(mysql_insert_query, records_to_insert)
