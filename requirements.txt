@@ -2,3 +2,4 @@ mimesis
 numpy
 pandas
 boto3
+PyMySQL
