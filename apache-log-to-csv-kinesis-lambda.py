@@ -7,16 +7,10 @@ from datetime import datetime
 print('Loading function')
 
 def lambda_handler(event, context):
+
+    output = []
     
-    # variable environment 
-    BUCKET = os.environ["BUCKET"]
-    
-    s3 = boto3.client('s3')
-    logs = ''
-    filename = datetime.now().strftime('%Y-%m-%d_%H-%M-%S') + ".csv"
-    count = 0
     for record in event['records']:
-        count += 1
         payload_log = base64.b64decode(record['data'])
         elems = str(payload_log).split(' ')
         order_date_date = elems[3][1:]
@@ -28,12 +22,21 @@ def lambda_handler(event, context):
         campaign_id = params_values[1]
         media_source = params_values[2]
         prod_id = params_values[3]
-        logs += f'{customer_id},{order_date_date} {order_date_hour},{campaign_id},{media_source},{prod_id}\n'
+        message = customer_id + ',' + order_date_date + ',' + order_date_hour + ',' + campaign_id + ',' + prod_id + '\n'
+
+        message_bytes = message.encode('ascii')
+        base64_bytes = base64.b64encode(message_bytes)
+        base64_message = base64_bytes.decode('ascii')
         
-    s3.put_object(Body=logs, Bucket=BUCKET, Key=filename)
-    print(str(count) + ' logs were processed!')
+        output_record = {
+            'recordId': record['recordId'],
+            'result': 'Ok',
+            'data': base64_message
+        }
+        output.append(output_record)
+        
+        
+    print('Successfully processed {} records.'.format(len(event['records'])))
     
-    return {
-        'statusCode': 200,
-        'body': json.dumps('Logs were processed!')
-    }
+    return {'records': output}
+    
